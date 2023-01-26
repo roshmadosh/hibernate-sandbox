@@ -57,6 +57,11 @@ public class Item {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(price);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((order == null) ? 0 : order.hashCode());
 		return result;
 	}
 	@Override
@@ -70,7 +75,20 @@ public class Item {
 		Item other = (Item) obj;
 		if (id != other.id)
 			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
+			return false;
+		if (order == null) {
+			if (other.order != null)
+				return false;
+		} else if (!order.equals(other.order))
+			return false;
 		return true;
 	}
+	
 
 }
