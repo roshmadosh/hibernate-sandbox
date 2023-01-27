@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 import link.hiroshisprojects.hibernate.item.Item;
 
@@ -24,7 +26,9 @@ public class PurchaseOrder {
 	@Basic
 	private LocalDateTime createdAt;
 
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	@ManyToMany(cascade = {
+		CascadeType.PERSIST, // Persisting parent object(i.e. purchaseorder) implies child objects are persisted as well
+	})
 	private Set<Item> items;
 
 	public PurchaseOrder() {
@@ -34,7 +38,7 @@ public class PurchaseOrder {
 
 	public void addItem(Item item) {
 		this.items.add(item);
-		item.setOrder(this);
+		item.getOrders().add(this);
 	}
 
 	public long getId() {
@@ -71,6 +75,7 @@ public class PurchaseOrder {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((items == null) ? 0 : items.hashCode());
 		return result;
 	}
 
@@ -85,8 +90,12 @@ public class PurchaseOrder {
 		PurchaseOrder other = (PurchaseOrder) obj;
 		if (id != other.id)
 			return false;
+		if (items == null) {
+			if (other.items != null)
+				return false;
+		} else if (!items.equals(other.items))
+			return false;
 		return true;
 	}
-	
 
 }

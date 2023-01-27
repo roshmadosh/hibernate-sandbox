@@ -1,11 +1,13 @@
 package link.hiroshisprojects.hibernate.item;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 import link.hiroshisprojects.hibernate.order.PurchaseOrder;
 
@@ -19,14 +21,18 @@ public class Item {
 
 	private double price;
 
-	@ManyToOne
-	@JoinColumn(name = "fk_order")
-	private PurchaseOrder order;
+	@ManyToMany(mappedBy = "items")
+	private Set<PurchaseOrder> orders;
 
 	public Item() {}
 	public Item(String name, double price) {
 		this.name = name;
 		this.price = price;
+		this.orders = new HashSet<>();
+	}
+	public void addOrder(PurchaseOrder order) {
+		this.orders.add(order);
+		order.addItem(this);
 	}
 	public long getId() {
 		return id;
@@ -46,11 +52,11 @@ public class Item {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public PurchaseOrder getOrder() {
-		return order;
+	public Set<PurchaseOrder> getOrders() {
+		return orders;
 	}
-	public void setOrder(PurchaseOrder order) {
-		this.order = order;
+	public void setOrders(Set<PurchaseOrder> orders) {
+		this.orders = orders;
 	}
 	@Override
 	public int hashCode() {
@@ -61,7 +67,6 @@ public class Item {
 		long temp;
 		temp = Double.doubleToLongBits(price);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((order == null) ? 0 : order.hashCode());
 		return result;
 	}
 	@Override
@@ -82,13 +87,8 @@ public class Item {
 			return false;
 		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
 			return false;
-		if (order == null) {
-			if (other.order != null)
-				return false;
-		} else if (!order.equals(other.order))
-			return false;
 		return true;
 	}
 	
-
+	
 }

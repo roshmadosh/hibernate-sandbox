@@ -6,8 +6,7 @@ build
 
 .project
 .settings/
-*/logs/
+**/logs
 .classpath
-
-
+**/bin
 

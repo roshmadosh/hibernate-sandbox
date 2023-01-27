@@ -14,10 +14,8 @@
 		</encoder>
 	</appender>
 
-	<logger name="org.hibernate">
-		<level value="INFO"/>
-	</logger>
-
+	<logger name="org.hibernate" level="DEBUG" />
+	<logger name="org.hibernate.type" level="TRACE" />
 	<root level="INFO">
 		<appender-ref ref="FILE" />
 	</root>

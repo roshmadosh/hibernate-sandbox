@@ -45,8 +45,7 @@ public class App {
 
 	static void jpa() {
 		EntityManager entityManager = emf.createEntityManager();
-
-
+		LOGGER.warn("SANITY CHECK **********");
 		PurchaseOrder order = new PurchaseOrder();
 		Item shoes = new Item("shoes", 10.50);
 		Item hat = new Item("hat", 33.33);
@@ -56,6 +55,7 @@ public class App {
 		EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
 		entityManager.persist(order);
+		
 		tx.commit();
 		entityManager.close();
 	}
@@ -68,10 +68,10 @@ public class App {
 		Item pants = new Item("pants", 20.55);
 		Item shirt = new Item("shirt", 52.41);
 
+		
 		order.addItem(pants);
 		order.addItem(shirt);
 
-		LOGGER.warn("******** should contain shirt" + order);
 		session.save(order);
 
 		session.getTransaction().commit();
