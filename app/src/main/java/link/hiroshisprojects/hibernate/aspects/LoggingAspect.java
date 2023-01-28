@@ -26,13 +26,13 @@ public class LoggingAspect {
 	@Pointcut("within(link.hiroshisprojects.hibernate.models..*)")
 	private void applicationPackagePointcut(){}
 
-	@AfterThrowing(pointcut = "applicationPackagePointcut()", throwing = "e")
+	@AfterThrowing(pointcut = "applicationPackagePointcut() || springFrameworkPointcut()", throwing = "e")
 	public void logAfterThrowing(JoinPoint joinPoint, Throwable e) {
 		LOGGER.error("AOP LOGGER: Exception in {}.{}()\n", joinPoint.getSignature().getDeclaringTypeName(),
 				joinPoint.getSignature().getName(), e);
 	}
 
-	@Around("applicationPackagePointcut()")
+	@Around("applicationPackagePointcut() || springFrameworkPointcut()")
 	public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
 		if (LOGGER.isDebugEnabled()) {
 			LOGGER.debug("ENTER: {}.{}() with argument[s] = {}", joinPoint.getSignature().getDeclaringTypeName(),
