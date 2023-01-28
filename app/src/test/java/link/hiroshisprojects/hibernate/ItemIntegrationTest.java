@@ -2,24 +2,21 @@ package link.hiroshisprojects.hibernate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import link.hiroshisprojects.hibernate.item.Item;
-import link.hiroshisprojects.hibernate.item.ItemRepository;
+import link.hiroshisprojects.hibernate.config.JpaConfig;
+import link.hiroshisprojects.hibernate.config.WebMvcConfig;
+import link.hiroshisprojects.hibernate.models.item.Item;
+import link.hiroshisprojects.hibernate.models.item.ItemRepository;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { JpaConfig.class, WebMvcConfig.class })

@@ -1,4 +1,4 @@
-package link.hiroshisprojects.hibernate.order;
+package link.hiroshisprojects.hibernate.models.order;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -10,13 +10,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import link.hiroshisprojects.hibernate.item.Item;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import link.hiroshisprojects.hibernate.models.item.Item;
 
 @Entity
+@JsonIgnoreProperties({ "items" }) // This is to prevent circular referencing when mapping Item instances to JSON
 public class PurchaseOrder {
 
 	@Id

@@ -1,4 +1,4 @@
-package link.hiroshisprojects.hibernate.item;
+package link.hiroshisprojects.hibernate.models.item;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import link.hiroshisprojects.hibernate.order.PurchaseOrder;
+import link.hiroshisprojects.hibernate.models.order.PurchaseOrder;
 
 @Entity
 public class Item {

@@ -11,8 +11,8 @@
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<class>link.hiroshisprojects.hibernate.item.Item</class>
-		<class>link.hiroshisprojects.hibernate.order.PurchaseOrder</class>
+		<class>link.hiroshisprojects.hibernate.models.item.Item</class>
+		<class>link.hiroshisprojects.hibernate.models.order.PurchaseOrder</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver"
@@ -22,7 +22,7 @@
 				value="jdbc:mysql://localhost:3306/ecommerceTest" />
 
             <property name="javax.persistence.jdbc.user"
-				value="ecommerceadmin" />
+				value="ecommercetestadmin" />
 
             <property name="javax.persistence.jdbc.password"
 				value="password" />
@@ -35,7 +35,7 @@
 
 			<property name="hibernate.format_sql"
 				value="true" />
-        </properties>
+		</properties>
 
     </persistence-unit>
 

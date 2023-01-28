@@ -7,20 +7,20 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
-import link.hiroshisprojects.hibernate.item.Item;
-import link.hiroshisprojects.hibernate.item.ItemRepository;
-import link.hiroshisprojects.hibernate.order.PurchaseOrder;
+import link.hiroshisprojects.hibernate.models.item.Item;
+import link.hiroshisprojects.hibernate.models.item.ItemRepository;
+import link.hiroshisprojects.hibernate.models.order.PurchaseOrder;
 
 
 public class App {
 	public static void main(String[] args) {
-		// jpa();	
+		jpa();	
 		// hibernate();
     }
 
 	static void jpa() {
 		EntityManager entityManager = JpaFactoryUtil.getEntityManagerFactory().createEntityManager();
-		PurchaseOrder order = new PurchaseOrder();
+		link.hiroshisprojects.hibernate.models.order.PurchaseOrder order = new link.hiroshisprojects.hibernate.models.order.PurchaseOrder();
 		Item shoes = new Item("shoes", 10.50);
 		Item hat = new Item("hat", 33.33);
 		order.addItem(shoes);

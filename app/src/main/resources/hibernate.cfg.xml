@@ -15,7 +15,7 @@
     <property name="format_sql">true</property>
     <property name="hbm2ddl.auto">update</property>
     <!-- mapping class="com.mcnz.jpa.examples.Player" / -->
-	<mapping class="link.hiroshisprojects.hibernate.item.Item" />
-	<mapping class="link.hiroshisprojects.hibernate.order.PurchaseOrder" />
+	<mapping class="link.hiroshisprojects.hibernate.models.item.Item" />
+	<mapping class="link.hiroshisprojects.hibernate.models.order.PurchaseOrder" />
   </session-factory>
 </hibernate-configuration>

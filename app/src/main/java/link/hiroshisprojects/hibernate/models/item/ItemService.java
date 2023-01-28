@@ -1,11 +1,11 @@
-package link.hiroshisprojects.hibernate.item;
+package link.hiroshisprojects.hibernate.models.item;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,10 @@ public class ItemService {
 	}
 	
 	public List<Item> list() {
-		return itemDao.findAll();
+		List<Item> items = itemDao.findAll();
+		items.stream().forEach(item -> Hibernate.initialize(item.getOrders()));
+
+		return items;
 	}
 
 }

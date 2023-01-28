@@ -36,17 +36,16 @@ dependencies {
 	// jackson
 	implementation("com.fasterxml.jackson.core:jackson-core:2.13.3")
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
-
-
+	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.3")
 	// spring data jpa
 	implementation("org.springframework.data:spring-data-jpa:2.7.6")
 
 }
 
-/* application { */
-/*     // Define the main class for the application. */
-/*     mainClass.set("link.hiroshisprojects.hibernate.App") */
-/* } */
+application {
+    // Define the main class for the application.
+    mainClass.set("link.hiroshisprojects.hibernate.App")
+}
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
